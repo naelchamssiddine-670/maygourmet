@@ -1,0 +1,72 @@
+const express = require('express');
+
+const app = express();
+
+// API ROUTE pour la page racine : localhost:3004
+app.get('/', (req, res) => {
+    res.write("<h1> Bienvenue chez MayGourmet </h1>");
+    res.end();
+});
+
+// API ROUTE pour la page d'accueil : localhost:3004/api/accueil
+app.get('/api/accueil', (req, res) => {
+
+    // Logique de traitement pour la page d'accueil
+    console.log("Je passe dans /api/accueil");
+
+    // type d'encodage du texte retourné eb réponse
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+
+    // Réponse envoyée au client
+    res.write("<p> Je suis à la l'accueil</p>");
+
+    // Terminer la réponse
+    res.end();
+})
+
+// API ROUTE pour la page équipe : localhost:3004/api/equipe
+app.get('/api/equipe', (req, res) => {
+
+    // Logique de traitement pour la page équipe
+    console.log("Je passe dans  /api/equipe");
+
+    // Réponse envoyée au client
+    res.write("<p> Je suis dans la page equipe</p>");
+
+    // Terminer la réponse
+    res.end()
+})
+
+// API ROUTE pour la page plats du jour : localhost:3004/api/plats
+app.get('/api/plats', (req, res) => {
+
+    // Logique de traitement pour la page plats
+    console.log("Je passe dans la partie /api/plats");
+
+    // Réponse envoyée au client
+    res.write("<p> Je visite les plats du jours </p>");
+
+    // Terminer la réponse
+    res.end()
+});
+
+
+// API ROUTE pour la page contact : localhost:3004/api/contact
+app.get('/api/contact', (req, res) => {
+
+    // Logique de traitement pour la page contact
+    console.log("Je passe dans la partie /api/contact");
+
+    // Réponse envoyée au client
+    res.write("<p> Je suis dans les contact</p>");
+
+    // Terminer la réponse
+    res.end()
+});
+
+
+
+
+
+
+module.exports = app;

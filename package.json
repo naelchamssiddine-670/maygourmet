@@ -1,0 +1,24 @@
+{
+  "name": "maygourmet",
+  "version": "1.0.0",
+  "description": "May Gourmet est une plateforme de réservation de restaurants en ligne qui permet aux utilisateurs de découvrir, réserver et évaluer des restaurants locaux. L'application offre une interface conviviale pour rechercher des restaurants par type de cuisine, emplacement et avis des utilisateurs. Les utilisateurs peuvent créer un compte, gérer leurs réservations et laisser des commentaires sur leurs expériences culinaires. May Gourmet vise à simplifier le processus de réservation tout en offrant une expérience gastronomique enrichissante.",
+  "main": "serveur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naelchamssiddine-670/maygourmet.git"
+  },
+  "keywords": [],
+  "author": "Nael CHAMSSIDDINE",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/naelchamssiddine-670/maygourmet/issues"
+  },
+  "homepage": "https://github.com/naelchamssiddine-670/maygourmet#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
