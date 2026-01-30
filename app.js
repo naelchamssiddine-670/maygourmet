@@ -9,6 +9,10 @@ app.set('views', './views');
 // Configurer le moteur de vue EJS
 app.set('view engine', 'ejs');
 
+// Je précise que j'utilise le dossier 'public' qui les fichiers statics
+app.use(express.static('public'));
+
+
 // API ROUTE pour la page racine : localhost:3004
 app.get('/', (req, res) => {
     res.write("<h1> Bienvenue chez MayGourmet </h1>");
@@ -55,7 +59,7 @@ app.get('/api/plats', (req, res) => {
     console.log("Je passe dans la partie /api/plats");
 
     res.render('plats');
-    
+
     // Réponse envoyée au client
     //res.write("<p> Je visite les plats du jours </p>");
 
