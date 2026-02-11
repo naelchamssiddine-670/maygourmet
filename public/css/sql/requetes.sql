@@ -34,7 +34,7 @@ INSERT INTO equipe (nom, prenom, mail, telephone, poste, adress_postale, present
 INSERT INTO equipe (nom, prenom, mail, telephone, poste, adress_postale, presentation, date_recrutement)
 VALUES ("HASSANI","AICHA","hassani@gmail.com","0639123456","Responsable marketing","23 rue des fleurs 97600 Mamoudzou","Créative et passionnée par la promotion de la cuisine.", "2024-05-05");
 
-CREATE TABLE fournisseur (
+CREATE TABLE fournisseur IF NOT EXISTS(
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nom VARCHAR(155) NOT NULL,
     prenom VARCHAR(155) NOT NULL,
@@ -42,6 +42,24 @@ CREATE TABLE fournisseur (
     telephone VARCHAR(100) NOT NULL,
     adress_postale VARCHAR(255),
     presentation_produit VARCHAR(255)
+    -- J'associe la table fournisseur à la table produit en utilisant L'ID_PRODUIT
+    -- L'ID_PRODUIT provient de la table produit
+    id_produit INT NOT NULL,
+    FOREIGN KEY (id_produit) REFERENCES produit(id_produit)
+);
+
+-- Créer la table 'produit'
+CREATE TABLE produit IF NOT EXISTS(
+    id_produit INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nom VARCHAR(100) NOT NULL,
+    presentation VARCHAR(155),
+    prix INT NOT NULL,
+    origin VARCHAR(30) NOT NULL,
+    categorie VARCHAR(30),
+    disponibilite BOOLEAN DEFAULT False,
+    type_culture VARCHAR(30)
+    -- J'associe la table produit à la table fournisseur en utilisant les identifiants de chaque table
+    FOREIGN KEY (id_fournisseur) REFERENCES fournisseur(id_fournisseur)
 );
 
 INSERT INTO fournisseur (nom, prenom, mail, telephone, adress_postale, presentation_produit)
@@ -52,3 +70,37 @@ VALUES
 ("IBRAHIM","HAMZA","zanfaranehamza@gmail.com","0639123456","4 rue de la mosquée 97600 Mamoudzou","nkassa."),
 ("IBRAHIM","HAMZA","zanfaranehamza@gmail.com","0639123456","4 rue de la mosquée 97600 Mamoudzou","landra."),
 ("","ahmed","zanfaranehamza@gmail.com","0639123456","4 rue de la mosquée 97665","viande de poulet, dinde, canard");
+
+CREATE TABLE fournisseur(
+    id_fournisseur INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(155) NOT NULL,
+   	responsable VARCHAR(155) not null,
+   	mail VARCHAR(100) not null,
+    telephone VARCHAR(100),
+    adress_postale VARCHAR(255),
+    presentation_fournisseur VARCHAR(255)
+);
+
+
+CREATE TABLE produit(
+    id_produit INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nom VARCHAR(100) NOT NULL,
+    presentation VARCHAR(155),
+    prix INT NOT NULL,
+    origin VARCHAR(30) NOT NULL,
+    categorie VARCHAR(30),
+    disponibilite BOOLEAN DEFAULT False,
+    type_culture VARCHAR(30),
+    -- J'associe la table produit à la table fournisseur en utilisant les identifiants de chaque table
+    id_fournisseur INT not null,
+    FOREIGN KEY (id_fournisseur) REFERENCES fournisseur(id_fournisseur)
+);
+
+ALTER TABLE fournisseur drop id produit;
+CHANGE id_fournisseur id_produit INT NOT null;
+alter table fournisseur 
+add FOREIGN KEY (id_produit) REFERENCES produit(id_produit)
+
+-- Ajouter une ligne dans la table fournisseeur
+INSERT INTO fournisseur (id_fournisseur , nom, responsable, mail, telephone, adress_postale, presentation_fournisseur )
+values(1, "Kanga Passam", "Said Abdallah", "contact@kanfa.yt" , "0639123456","4 Rue Mhogoni 97605 Passamainty", "vente de fruit et légume local");                                                                                                                     )
