@@ -7,6 +7,9 @@ const myConnection = require('express-myconnection');
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 // Je configure les éléments attendus pour me connecter à MySQL2
 const optionsConnexionBasesDonnees = {
     host: "localhost",
