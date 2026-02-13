@@ -10,9 +10,16 @@
     <!--include le fichier navbar.ejs pour avoir la barre de navigation -->
     <%- include('navbar') -%>
 
-    <h2>
-        Notre Équipe MayGourmet
-    </h2>
+    <h2>Notre Équipe MayGourmet</h2>
+    <% resultatEquipe.forEach((result) => { %>
+        <div class="card">
+            <img src="/image/photo-1638429250966-15c61a0982b9.avif" alt="" class="team">
+            <div class="container">
+                <h4><b><%= result.nom %> <%= result.prenom %></b></h4>
+                <p><%= result.poste %></p>
+            </div>
+        </div>
+    <%}); %>
 
 </body>
 </html>

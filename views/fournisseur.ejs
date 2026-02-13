@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fournisseur</title>
+</head>
+<body>
+        <!--include le fichier navbar.ejs pour avoir la barre de navigation -->
+    <%- include('navbar') -%>
+
+  <div class="container">
+        <h2>Fournisseurs</h2>
+        <form action="/api/fournisseur" method="POST">
+            <label for="nomFournisseur">Nom: </label>
+            <input type="text" id="nomFournisseur" name="nomFournisseur" placeholder="Nom du Fournisseur">
+
+
+            <label for="responsableFournisseur">Responsable: </label>
+            <input type="text" id="responsableFournisseur" name="responsableFournisseur" placeholder="Nom du Responsable a contacter">
+
+
+            <label for="emailFournisseur">Mail: </label>
+            <input type="email" id="emailFournisseur" name="emailFournisseur" placeholder="Mail du Fournisseur">
+
+
+            <label for="telephoneFournisseur">Téléphone: </label>
+            <input type="tel" id="telephoneFournisseur" name="telephoneFournisseur" placeholder="Téléphone du Fournisseur">
+
+            <label for="adrsseFournisseur">Adresse postale :</label>
+            <input type="text" id="adresseFournisseur" name="adresseFournisseur" placeholder="Adresse postale du Fournisseur">
+
+            <label for="prsentationFournisseur">Présentation :</label>
+            <textarea id="presentationFournisseur" name="presentationFournisseur" placeholder="Dites-nous en plus sur le fournisseur" style="height:200px"></textarea>
+
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+</body>
+</html>

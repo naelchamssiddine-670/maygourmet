@@ -59,7 +59,26 @@ app.get('/api/equipe', (req, res) => {
     // Logique de traitement pour la page équipe
     console.log("Je passe dans  /api/equipe");
 
-    res.render('equipe');
+    // 1. Je me connecte à la BBD grâce à la méthode getConnection()
+    req.getConnection((erreur,connection) => {
+        if(erreur) { // Je vérifie s'il y a une erreur lors de la connexion à la BDD
+
+            console.log(erreur);
+        } else {
+            connection.query("SELECT * FROM equipe", [], (err,
+                resultatEquipe) => {
+                    if (err) {
+                        console.log("Erreur dans la requête SQL SELECT", err);
+                    } else {
+                        console.log("Mon equipe : ", resultatEquipe);
+
+                        res.render("equipe", {resultatEquipe});
+                    }
+                }
+            );
+        }
+    });
+
 
     // Réponse envoyée au client
     //res.write("<p> Je suis dans la page equipe</p>");
@@ -100,8 +119,15 @@ app.get('/api/contact', (req, res) => {
 });
 
 
+/*J'ajoute un fournisseur dans la table fournisseur de la BDD MySQL. Pour cela j'utilise 
+la méthode POST */
+app.post('/api/fournisseur', (req, res) => {
+    console.log("Corps de la requête : ", req.body);
+});
 
-
-
+// API ROUTE vas faire en sorte que lorsque je visite localhost:3004/api/fournisseur, je puisse voir la page fournisseur.ejs
+app.get('/api/fournisseur', (req, res) => {
+    res.render('fournisseur');
+});
 
 module.exports = app;
