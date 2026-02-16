@@ -8,7 +8,7 @@ const myConnection = require('express-myconnection');
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
 
 // Je configure les éléments attendus pour me connecter à MySQL2
 const optionsConnexionBasesDonnees = {
@@ -126,6 +126,12 @@ app.get('/api/contact', (req, res) => {
 la méthode POST */
 app.post('/api/fournisseur', (req, res) => {
     console.log("Corps de la requête : ", req.body);
+    console.log(req.body.nomFournisseur);
+    console.log(req.body.responsableFournisseur);
+    console.log(req.body.emailFournisseur);
+    console.log(req.body.telephoneFournisseur);
+    console.log(req.body.adresseFournisseur);
+    console.log(req.body.presentationFournisseur);
 });
 
 // API ROUTE vas faire en sorte que lorsque je visite localhost:3004/api/fournisseur, je puisse voir la page fournisseur.ejs
