@@ -1,0 +1,145 @@
+/* Styles pour la navbar sur la page fournisseur */
+.navbar-fournisseur {
+	background: #4a90e2;
+	padding: 0;
+	margin-bottom: 32px;
+	box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+}
+.navbar-fournisseur-nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 32px;
+	padding: 18px 0;
+}
+.navbar-fournisseur-link {
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.08rem;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	padding: 6px 16px;
+	border-radius: 4px;
+	transition: background 0.18s, color 0.18s;
+}
+.navbar-fournisseur-link:hover, .navbar-fournisseur-link:focus {
+	background: #357ab8;
+	color: #eaf6ff;
+}
+@media (max-width: 600px) {
+	.navbar-fournisseur-nav {
+		flex-direction: column;
+		gap: 10px;
+		padding: 10px 0;
+	}
+}
+/* Styles pour le formulaire fournisseur */
+.fournisseur-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 18px;
+}
+.fournisseur-form label {
+	font-weight: 500;
+	color: #2c3e50;
+	margin-bottom: 4px;
+}
+.fournisseur-input {
+	padding: 10px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	font-size: 1rem;
+	background: #f9fafb;
+	transition: border 0.2s;
+	margin-bottom: 6px;
+}
+.fournisseur-input:focus {
+	border: 1.5px solid #4a90e2;
+	outline: none;
+	background: #fff;
+}
+.fournisseur-submit {
+	background: #4a90e2;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 12px 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 10px;
+	transition: background 0.2s;
+}
+.fournisseur-submit:hover {
+	background: #357ab8;
+}
+/* Styles pour la page fournisseur */
+body {
+	background-color: #677270;
+	font-family: 'Segoe UI', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.fournisseur-container {
+	max-width: 900px;
+	margin: 40px auto;
+	background: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+	padding: 32px 40px;
+}
+
+.fournisseur-title {
+	font-size: 2.2rem;
+	color: #2c3e50;
+	margin-bottom: 24px;
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+.fournisseur-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.fournisseur-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 0;
+	border-bottom: 1px solid #ffc400;
+	transition: background 0.2s;
+}
+.fournisseur-item:last-child {
+	border-bottom: none;
+}
+.fournisseur-item:hover {
+	background: #f1f7ffa2;
+}
+
+.fournisseur-nom {
+	font-weight: 600;
+	color: #34495e;
+	font-size: 1.1rem;
+}
+.fournisseur-details {
+	color: #7f8c8d;
+	font-size: 0.98rem;
+}
+
+@media (max-width: 600px) {
+	.fournisseur-container {
+		padding: 18px 6px;
+	}
+	.fournisseur-title {
+		font-size: 1.3rem;
+	}
+	.fournisseur-item {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+	}
+}

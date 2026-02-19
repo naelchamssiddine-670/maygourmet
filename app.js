@@ -90,6 +90,31 @@ app.get('/api/equipe', (req, res) => {
     //res.end()
 })
 
+
+// API ROUTE pour la page à propos : localhost:3004/api/a-propos
+app.delete('/api/equipe/:id', (req, res) => {
+    const idMembreEquipe = req.params.id;
+    const queryDelete = "DELETE FROM equipe WHERE id = ?";
+
+    // Je me connecte à la base de données pour exécuter la requête SQL de suppression
+    req.getConnection((erreur, connection) => {
+        if (erreur) { // Je vérifie s'il y a une erreur lors de la connexion à la BDD
+            console.log("Erreur suppression equipe : ", erreur);
+            return res.status(500).send("Erreur de connexion à la base de données");
+        }
+        // Si la connexion est réussie, j'exécute la requête SQL de suppression
+        connection.query(queryDelete, [idMembreEquipe], (err, resultat) => {
+            if (err) {
+                console.log("Erreur suppression equipe : ", err);
+                return res.status(500).send("Erreur lors de la suppression du membre");
+            }
+            console.log("Bravo! Le membre est supprimé avec succès !");
+            res.status(200).redirect('/api/accueil');
+        });
+    });
+});
+
+
 // API ROUTE pour la page plats du jour : localhost:3004/api/plats
 app.get('/api/plats', (req, res) => {
 
@@ -126,12 +151,59 @@ app.get('/api/contact', (req, res) => {
 la méthode POST */
 app.post('/api/fournisseur', (req, res) => {
     console.log("Corps de la requête : ", req.body);
-    console.log(req.body.nomFournisseur);
-    console.log(req.body.responsableFournisseur);
-    console.log(req.body.emailFournisseur);
-    console.log(req.body.telephoneFournisseur);
-    console.log(req.body.adresseFournisseur);
-    console.log(req.body.presentationFournisseur);
+    const nomFournisseur = req.body.nomFournisseur;
+    const responsableFournisseur = req.body.responsableFournisseur;
+    const emailFournisseur = req.body.emailFournisseur;
+    const telephoneFournisseur = req.body.telephoneFournisseur;
+    const adresseFournisseur = req.body.adresseFournisseur;
+    const presentationFournisseur = req.body.presentationFournisseur;
+
+    const requeteSQL = "INSERT INTO fournisseur (nom, responsable, mail, telephone, adress_postale, presentation_fournisseur) VALUES (?, ?, ?, ?, ?, ?)";
+
+    const ordreChamps = [nomFournisseur, responsableFournisseur, emailFournisseur, telephoneFournisseur, adresseFournisseur, presentationFournisseur];
+
+    //je me connecte à la base de données pour exécuter la requete SQL d'insertion
+    req.getConnection((erreur, connection) => {
+    if(erreur) {
+        console.log("Erreur de connexion à la base de données : ", erreur);
+        return res.status(500).json({ error: "Erreur connexion BDD" });
+    } else {
+        connection.query(requeteSQL, ordreChamps, (err, nouveauFournisseur) => {
+            connection.release();
+            if(err) {
+                console.log("Erreur d'ajout de fournisseur : ", err);
+                return res.status(500).json({ error: "Erreur ajout fournisseur" });
+            } else {
+                console.log("Fournisseur ajouté avec succès !");
+                return res.redirect('/accueil');
+            }
+        });
+    }
+});
+
+
+    //req.getConnection((erreur, connection) => {
+  //      if(erreur) {
+  //          console.log("Erreur de connexion à la base de données : ", erreur);
+   //     } else {
+   //         connection.query(requeteSQL, ordreChamps, (err, nouveauFournisseur) => {
+//            if(err) {
+   //                 console.log("Erreur d'ajout de fournisseur : ", err);
+    //            } else {
+   //                 console.log("Fournisseur ajouté avec succès !");
+    //                res.status(300).json('/accueil');
+   //             }
+   //         });
+   //     }
+   // });
+
+
+    //console.log(req.body.nomFournisseur);
+    //console.log(req.body.responsableFournisseur);
+    //console.log(req.body.emailFournisseur);
+    //console.log(req.body.telephoneFournisseur);
+    //console.log(req.body.adresseFournisseur);
+    //console.log(req.body.presentationFournisseur);
 });
 
 // API ROUTE vas faire en sorte que lorsque je visite localhost:3004/api/fournisseur, je puisse voir la page fournisseur.ejs

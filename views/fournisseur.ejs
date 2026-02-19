@@ -4,36 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fournisseur</title>
+    <link rel="stylesheet" href="/css/fournisseur.css">
 </head>
 <body>
         <!--include le fichier navbar.ejs pour avoir la barre de navigation -->
     <%- include('navbar') -%>
 
-  <div class="container">
-        <h2>Fournisseurs</h2>
-        <form action="/api/fournisseur" method="post">
-            <label for="nomFournisseur">Nom: </label>
-            <input type="text" id="nomFournisseur" name="nomFournisseur" placeholder="Nom du Fournisseur">
+  <div class="fournisseur-container">
+        <h2 class="fournisseur-title">Fournisseurs</h2>
+        <form action="/api/fournisseur" method="post" class="fournisseur-form">
+            <label for="nomFournisseur">Nom :</label>
+            <input type="text" id="nomFournisseur" name="nomFournisseur" placeholder="Nom du Fournisseur" class="fournisseur-input">
 
+            <label for="responsableFournisseur">Responsable :</label>
+            <input type="text" id="responsableFournisseur" name="responsableFournisseur" placeholder="Nom du Responsable à contacter" class="fournisseur-input">
 
-            <label for="responsableFournisseur">Responsable: </label>
-            <input type="text" id="responsableFournisseur" name="responsableFournisseur" placeholder="Nom du Responsable a contacter">
+            <label for="emailFournisseur">Mail :</label>
+            <input type="email" id="emailFournisseur" name="emailFournisseur" placeholder="Mail du Fournisseur" class="fournisseur-input">
 
+            <label for="telephoneFournisseur">Téléphone :</label>
+            <input type="tel" id="telephoneFournisseur" name="telephoneFournisseur" placeholder="Téléphone du Fournisseur" class="fournisseur-input">
 
-            <label for="emailFournisseur">Mail: </label>
-            <input type="email" id="emailFournisseur" name="emailFournisseur" placeholder="Mail du Fournisseur">
+            <label for="adresseFournisseur">Adresse postale :</label>
+            <input type="text" id="adresseFournisseur" name="adresseFournisseur" placeholder="Adresse postale du Fournisseur" class="fournisseur-input">
 
+            <label for="presentationFournisseur">Présentation :</label>
+            <textarea id="presentationFournisseur" name="presentationFournisseur" placeholder="Dites-nous en plus sur le fournisseur" class="fournisseur-input" style="height: 120px;"></textarea>
 
-            <label for="telephoneFournisseur">Téléphone: </label>
-            <input type="tel" id="telephoneFournisseur" name="telephoneFournisseur" placeholder="Téléphone du Fournisseur">
-
-            <label for="adrsseFournisseur">Adresse postale :</label>
-            <input type="text" id="adresseFournisseur" name="adresseFournisseur" placeholder="Adresse postale du Fournisseur">
-
-            <label for="prsentationFournisseur">Présentation :</label>
-            <textarea id="presentationFournisseur" name="presentationFournisseur" placeholder="Dites-nous en plus sur le fournisseur" style="height:200px"></textarea>
-
-            <input type="submit" value="Envoyer">
+            <input type="submit" value="Envoyer" class="fournisseur-submit">
         </form>
     </div>
 </body>
