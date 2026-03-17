@@ -109,7 +109,8 @@ app.delete('/api/equipe/:id', (req, res) => {
                 return res.status(500).send("Erreur lors de la suppression du membre");
             }
             console.log("Bravo! Le membre est supprimé avec succès !");
-            res.status(200).redirect('/api/accueil');
+            //res.status(200).redirect('/api/accueil');
+            res.status(200).json({ routeAccueil: "/api/accueil"});
         });
     });
 });

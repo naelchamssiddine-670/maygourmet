@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon équipe</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/equipesupprimer.js"></script>
 </head>
 <body>
     <!--include le fichier navbar.ejs pour avoir la barre de navigation -->
@@ -17,13 +18,10 @@
             <div class="container">
                 <h4><b><%= result.nom %> <%= result.prenom %></b></h4>
                 <p><%= result.poste %></p>
-                <input type="button" value="supprimer" onclik="supprimer('<%= result.id =%>')">
+                <input type="button" value="supprimer" onclick="supprimer('<%= result.id %>')">
             </div>
         </div>
     <%}); %>
 
 </body>
-<script>
-    
-</script>
 </html>
