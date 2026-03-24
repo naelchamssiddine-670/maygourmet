@@ -5,23 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon équipe</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/modal.css">
     <script src="/js/equipesupprimer.js"></script>
+    <script src="/js/modal.js"></script>
 </head>
 <body>
     <!--include le fichier navbar.ejs pour avoir la barre de navigation -->
     <%- include('navbar') -%>
 
     <h2>Notre Équipe MayGourmet</h2>
+
+        <div>
+        <button id="myBtn">Ajouter un membre</button>
+        </div>
+
+        <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Formulaire d'inscription:</p>
+
+            <div class="modal-header">
+                <h2>Ajouter un membre</h2>
+            </div>
+
+            <div class="modal-body">
+                <p>Veuillez remplir le formulaire ci-dessous pour ajouter un nouveau membre à l'équipe.</p>
+
+                                <!-- Formulaire d'ajout du nouveau membre -->
+                 <div class="container">
+                    <form action="/api/equipe" method="post">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="nom">Nom:</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="nom" id="nommembreEquipe">
+                            </div>
+                        </div>
+                        <!--ligne 2-->
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="prenom">Prénom:</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="prenom" id="prenommembreEquipe">
+                            </div>
+                        </div>
+                        <!--ligne 3-->
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="mail">Mail:</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="email" name="mail" id="mailmembreEquipe">
+                            </div>
+                        </div>
+                        <!--ligne 4-->
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="telephone">Téléphone:</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="telephone" id="telephonemembreEquipe">
+                            </div>
+                        </div>
+                        <!--ligne 5-->
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="poste">Poste:</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="poste" id="postemembre">
+                            </div>
+                        </div>
+                        <!--ligne 6-->
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="adress_postale">Adresse postale:</label>
+                            </div>
+                            <div class="col-75">
+                                <textarea name="adress_postale" id="adress_postalemembre" style="height: 10px;"></textarea>
+                            </div>
+                        </div>
+                        <!--ligne 7-->
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="presentation">Présentation:</label>
+                            </div>
+                            <div class="col-75">
+                                <textarea name="presentation" id="presentation" style="height: 120px;"></textarea>
+                            </div>
+                        </div>
+                        <!--ligne 8-->
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="date_recrutement">Date de recrutement:</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="date" name="date_recrutement" id="date_recrutement">
+                            </div>
+                        </div>
+                        <button id="btnEnregistrer">Enregistrer</button>
+                    </form>
+
+                 </div>
+            </div>
+        </div>
+            <div class="modal-content">
+
+            <!-- Pied de page du modal -->
+            <div class="modal-footer">
+            </div>
+        </div>
+        
+    </div>
+
     <% resultatEquipe.forEach((result) => { %>
         <div class="card">
             <img src="/image/photo-1638429250966-15c61a0982b9.avif" alt="" class="team">
             <div class="container">
                 <h4><b><%= result.nom %> <%= result.prenom %></b></h4>
                 <p><%= result.poste %></p>
+                <!-- bouton supprimer -->
                 <input type="button" value="supprimer" onclick="supprimer('<%= result.id %>')">
+                <!-- Bouton pour ouvrir le modal de modification -->
+                <input type="button" value="Modifier"
+                onclick='modifier(
+                <%= result.id %>,
+                <%= JSON.stringify(result.nom) %>,
+                <%= JSON.stringify(result.prenom) %>,
+                <%= JSON.stringify(result.mail) %>,
+                <%= JSON.stringify(result.telephone) %>,
+                <%= JSON.stringify(result.poste) %>,
+                <%= JSON.stringify(result.adress_postale) %>,
+                <%= JSON.stringify(result.presentation) %>,
+                <%= JSON.stringify(result.date_recrutement) %>
+                )'%>
             </div>
         </div>
     <%}); %>
 
 </body>
+
 </html>

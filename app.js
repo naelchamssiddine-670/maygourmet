@@ -115,6 +115,37 @@ app.delete('/api/equipe/:id', (req, res) => {
     });
 });
 
+app.put('/api/equipe/:id', (req, res) => {
+    const idMembreEquipe = req.params.id;
+    const nomMembreEquipe = req.body.nom;
+    const prenomMembreEquipe = req.body.prenom;
+    const mailMembreEquipe = req.body.mail;
+    const telephoneMembreEquipe = req.body.telephone;
+    const posteMembreEquipe = req.body.poste;
+    const adressPostaleMembreEquipe = req.body.adress_postale;
+    const presentationMembreEquipe = req.body.presentation;
+    const dateRecrutementMembreEquipe = req.body.date_recrutement;
+
+    const queryUpdate = "UPDATE equipe SET nom = ?, prenom = ?, mail = ?, telephone = ?, poste = ?, adress_postale = ?, presentation = ?, date_recrutement = ? WHERE id = ?";
+
+    req.getConnection((erreur, connection) => {
+        if (erreur) {
+            console.log("Erreur modification membre equipe : ", erreur);
+            return res.status(500).send("Erreur de connexion à la base de données");
+        }
+        connection.query(queryUpdate, [nomMembreEquipe, prenomMembreEquipe, mailMembreEquipe, telephoneMembreEquipe, posteMembreEquipe, adressPostaleMembreEquipe, presentationMembreEquipe, dateRecrutementMembreEquipe, idMembreEquipe], (err, resultat) => {
+            if (err) {
+                console.log("Erreur modification membre equipe : ", err);
+                return res.status(500).send("Erreur lors de la modification du membre");
+            }
+            console.log("Bravo! Le membre est modifié avec succès !");
+            res.status(200).json({ routeAccueil: "/api/accueil"});
+        });
+    });
+    
+
+
+});
 
 // API ROUTE pour la page plats du jour : localhost:3004/api/plats
 app.get('/api/plats', (req, res) => {
@@ -147,7 +178,43 @@ app.get('/api/contact', (req, res) => {
     //res.end()
 });
 
+/** 
+ * API pour ajouter un membre d'équipe.
+ * Le membre sera inséré dans la table équipe.
+*/
+app.post("/api/equipe", (req, res) => {
+    console.log("Corps de la requête : ", req.body);
+    const nommembreEquipe = req.body.nom;
+    const prenommembreEquipe = req.body.prenom;
+    const mailmembreEquipe = req.body.mail;
+    const telephonemembreEquipe = req.body.telephone;
+    const postemembreEquipe = req.body.poste;
+    const adress_postalemembreEquipe = req.body.adress_postale;
+    const presentation_membreEquipe = req.body.presentation;
+    const date_recrutement_membreEquipe = req.body.date_recrutement;
 
+    const requeteSQL = "INSERT INTO equipe (nom, prenom, mail, telephone, poste, adress_postale, presentation, date_recrutement) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    const ordreChamps = [nommembreEquipe, prenommembreEquipe, mailmembreEquipe, telephonemembreEquipe, postemembreEquipe, adress_postalemembreEquipe, presentation_membreEquipe, date_recrutement_membreEquipe];
+
+    req.getConnection((erreur, connection) => {
+        if(erreur) {
+            console.log("Erreur de connexion à la base de données : ", erreur);
+            return res.status(500).json({ error: "Erreur connexion BDD" });
+        } else {
+            connection.query(requeteSQL, ordreChamps, (err) => {
+                if(err) {
+                    console.log("Erreur d'ajout de membre d'équipe : ", err);
+                    return res.status(500).json({ error: "Erreur ajout membre équipe" });
+                } else {
+                    console.log("Membre d'équipe ajouté avec succès !");
+                    return res.redirect('/api/accueil');
+                }
+            });
+        }
+    });
+});
+                
 /*J'ajoute un fournisseur dans la table fournisseur de la BDD MySQL. Pour cela j'utilise 
 la méthode POST */
 app.post('/api/fournisseur', (req, res) => {
