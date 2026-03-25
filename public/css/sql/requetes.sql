@@ -104,3 +104,37 @@ add FOREIGN KEY (id_produit) REFERENCES produit(id_produit)
 -- Ajouter une ligne dans la table fournisseeur
 INSERT INTO fournisseur (id_fournisseur , nom, responsable, mail, telephone, adress_postale, presentation_fournisseur )
 values(1, "Kanga Passam", "Said Abdallah", "contact@kanfa.yt" , "0639123456","4 Rue Mhogoni 97605 Passamainty", "vente de fruit et légume local");                                                                                                                     )
+
+-- 1. Créer la base
+CREATE DATABASE IF NOT EXISTS maygourmet;
+USE maygourmet;
+
+-- 2. Créer la table produit (OBLIGATOIRE)
+CREATE TABLE produit (
+    id_produit INT AUTO_INCREMENT PRIMARY KEY
+);
+
+-- 3. Créer la table plats
+CREATE TABLE plats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    description TEXT,
+    categorie VARCHAR(50),
+    prix DECIMAL(10,2) NOT NULL,
+    disponibilite BOOLEAN DEFAULT TRUE,
+    id_produit INT,
+    FOREIGN KEY (id_produit) REFERENCES produit(id_produit)
+);
+
+-- 4. Ajouter image
+ALTER TABLE plats ADD image VARCHAR(200);
+
+-- 5. Insérer un produit (IMPORTANT)
+INSERT INTO produit VALUES (1);
+
+-- 6. Insérer les plats
+INSERT INTO plats (nom, description, categorie, prix, disponibilite, id_produit)
+VALUES 
+('Poulet coco', 'Poulet au lait de coco et épices', 'plat', 12.50, TRUE, 1),
+('Salade exotique', 'Salade fraîche avec fruits tropicaux', 'entrée', 8.00, TRUE, 1),
+('Gâteau banane', 'Dessert maison à la banane', 'dessert', 5.50, FALSE, 1);

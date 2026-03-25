@@ -142,41 +142,54 @@ app.put('/api/equipe/:id', (req, res) => {
             res.status(200).json({ routeAccueil: "/api/accueil"});
         });
     });
-    
+
 
 
 });
 
-// API ROUTE pour la page plats du jour : localhost:3004/api/plats
-app.get('/api/plats', (req, res) => {
+app.get("/api/plats", (req, res) => {
 
-    // Logique de traitement pour la page plats
-    console.log("Je passe dans la partie /api/plats");
+    console.log("Je passe dans /plats");
 
-    res.render('plats');
+    req.getConnection((erreur, connection) => {
+        if (erreur) {
+            console.log(erreur);
+            return res.status(500).send("Erreur connexion BDD");
+        }
 
-    // Réponse envoyée au client
-    //res.write("<p> Je visite les plats du jours </p>");
+        connection.query("SELECT * FROM plats", [], (err, resultatPlats) => {
+            if (err) {
+                console.log("Erreur SQL :", err);
+                return res.status(500).send("Erreur requête");
+            }
 
-    // Terminer la réponse
-    //res.end()
+            console.log("Mes plats :", resultatPlats);
+
+            // IMPORTANT
+            res.render("plats", { resultatPlats: resultatPlats });
+        });
+    });
 });
 
+
+// DELETE /api/equipe/:id pour supprimer un plat
+//app.delete('/api/plats/:id', (req, res) => {
+    //console.log("Event: Route DELETE /api/plats/:id ")
 
 // API ROUTE pour la page contact : localhost:3004/api/contact
-app.get('/api/contact', (req, res) => {
+//app.get('/api/contact', (req, res) => {
 
     // Logique de traitement pour la page contact
-    console.log("Je passe dans la partie /api/contact");
+    //console.log("Je passe dans la partie /api/contact");
 
-    res.render('contact');
+    //res.render('contact');
 
     // Réponse envoyée au client
     //res.write("<p> Je suis dans les contact</p>");
 
     // Terminer la réponse
     //res.end()
-});
+//});
 
 /** 
  * API pour ajouter un membre d'équipe.

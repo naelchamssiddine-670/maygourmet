@@ -98,6 +98,6 @@ function modifier(id, nom, prenom, mail, telephone, poste, adresse, presentation
             alert("✅ Membre modifié !");
             location.reload(); // recharge la page
         })
-        .catch(error => console.error("Erreur :", error));
+        .catch(error => console.error("erreur :",error));
     };
 }

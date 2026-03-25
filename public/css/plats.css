@@ -1,0 +1,154 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* BODY */
+body {
+  background: #f5f7fa;
+  color: #333;
+}
+
+/* TITRE */
+h2 {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 28px;
+  color: #f4f6f8;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+/* HEADER */
+.header p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* GRID PLATS */
+.plat-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+/* CARD */
+.plats-card {
+  background: rgb(134, 139, 144);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* HOVER EFFECT */
+.plats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+.plats-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.plats-card:hover img {
+  transform: scale(1.05);
+}
+
+/* TITRE PLAT */
+.plats-card h3 {
+  color: #e67e22;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* TEXTE */
+.plats-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* PRIX */
+.plats-card p strong {
+  color: #2c3e50;
+}
+
+/* BOUTONS */
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* SUPPRIMER */
+.delete-button {
+  background: #e74c3c;
+  color: white;
+}
+
+.delete-button:hover {
+  background: #c0392b;
+}
+
+/* MODIFIER */
+.edit-btn {
+  background: #3498db;
+  color: white;
+  margin-left: 5px;
+}
+
+.edit-btn:hover {
+  background: #2980b9;
+}
+
+/* MESSAGE VIDE */
+.header p:last-child {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .plat-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .plat-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== BODY ===== */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+
+    /* image + overlay sombre */
+    background: 
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url('/image/Drinks.jpg') center/cover no-repeat;
+
+    min-height: 100vh;
+}

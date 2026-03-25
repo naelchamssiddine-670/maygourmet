@@ -4,16 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plats</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/plats.css">
 </head>
 <body>
-    
-    <!--include le fichier navbar.ejs pour avoir la barre de navigation -->
-    <%- include('navbar') -%>
 
-    <h2>
-        Découvrez nos délicieux plats de chez MayGourmet !
-    </h2>
+    <%- include('navbar') %>
+
+    <h2>Découvrez nos délicieux plats de chez MayGourmet !</h2>
+
+    <div class="container">
+        <div class="header">
+
+            <% const plats = typeof resultatPlats !== 'undefined' ? resultatPlats : []; %>
+
+            <% if (plats.length > 0) { %>
+                <p>Plats disponibles :</p>
+
+                <div class="plat-container">
+                    <% plats.forEach((plat, index) => { %>
+
+                        <div class="plats-card" data-plats-id="<%= plat.id %>">
+
+                            <h3><%= plat.nom %></h3>
+                            <p><strong>Description:</strong> <%= plat.description %></p>
+                            <p><strong>Prix:</strong> <%= plat.prix %> €</p>
+
+                            <button class="delete-button" id="myBtn" onclick="supprimerPlats('<%= plat.id %>')">
+                                Supprimer
+                            </button>
+
+                            <button type="button" class="edit-btn" id="myBtn"
+                                onclick="console.log('Modifier le plat avec ID: <%= plat.id %>')">
+                                Modifier
+                            </button>
+                        </div>
+
+                            <button type="button" class="edit-btn" id="myBtn"
+                                onclick="console.log('Ajouter des plats avec ID: <%= plat.id %>')">
+                                Ajouter
+                            </button>
+
+                    <% }) %>
+                </div>
+
+            <% } else { %>
+                <p>Aucun plat disponible pour le moment.</p>
+            <% } %>
+
+        </div>
+    </div>
+
+    <script>
+        function supprimerPlats(id) {
+            console.log('Supprimer le plat avec ID:', id);
+        }
+    </script>
 
 </body>
 </html>
